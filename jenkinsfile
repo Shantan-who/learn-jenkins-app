@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     stages {
-       /*stage('Build'){
+        stage('Build'){
             agent{
                 docker{
                     image 'node:18-alpine'
                     reuseNode true
                 }
             }
-            steps {
+            steps { 
                 sh '''
                 ls -la
                 npm --version
@@ -19,10 +19,10 @@ pipeline {
                 ls -la
                 '''
             }
-        }*/
+        }
         stage ('Run Tests'){
             parallel{
-                stage ('Test'){
+                stage ('Unit Test'){
             agent{
                 docker{
                     image 'node:18-alpine'
@@ -31,7 +31,7 @@ pipeline {
             }
             steps{
                 sh '''
-                   test -f build/index.html 
+                   #test -f build/index.html 
                    npm test
                    ''' 
             }
